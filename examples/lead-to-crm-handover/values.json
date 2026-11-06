@@ -1,0 +1,25 @@
+{
+  "CRED_SLACKAPI_ID": {
+    "value": "",
+    "hint": "ID of your slackApi credential"
+  },
+  "CRED_SLACKAPI_NAME": {
+    "value": "",
+    "hint": "name of your slackApi credential"
+  },
+  "HTTP_REQUEST_BASE_URL": {
+    "value": "",
+    "hint": "base URL of the API (keep it as is if it is a public API, change it for a client-hosted one)",
+    "used_in": 1
+  },
+  "SECRET_HTTP_REQUEST_AUTHORIZATION": {
+    "value": "",
+    "hint": "Authorization (move this to an n8n credential)",
+    "used_in": 1
+  },
+  "SLACK_CHANNELID_SALES_LEADS": {
+    "value": "",
+    "hint": "channelId (was: #sales-leads)",
+    "used_in": 1
+  }
+}

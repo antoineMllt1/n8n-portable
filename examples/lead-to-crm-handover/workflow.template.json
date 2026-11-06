@@ -1,0 +1,53 @@
+{
+  "name": "Lead to CRM",
+  "nodes": [
+    {
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "webhookId": "__N8NP_WEBHOOK_ID__",
+      "parameters": {
+        "path": "lead"
+      }
+    },
+    {
+      "name": "Push to CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "parameters": {
+        "url": "__N8NP_HTTP_REQUEST_BASE_URL__/crm/v3/objects/contacts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "__N8NP_SECRET_HTTP_REQUEST_AUTHORIZATION__"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Notify",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "credentials": {
+        "slackApi": {
+          "id": "__N8NP_CRED_SLACKAPI_ID__",
+          "name": "__N8NP_CRED_SLACKAPI_NAME__"
+        }
+      },
+      "parameters": {
+        "channelId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "__N8NP_SLACK_CHANNELID_SALES_LEADS__"
+        },
+        "text": "=New lead {{ $json.email }}"
+      }
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "active": false
+}
